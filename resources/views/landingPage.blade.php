@@ -17,8 +17,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.css" rel="stylesheet" />
 </head>
 
-<body class=" bg-[#EAFBF3] flex">
-    <aside class="p-6 min-h-screen flex flex-col justify-between items-center w-72 bg-white">
+<body class=" bg-[#EAFBF3] ">
+    <aside class="p-6 h-screen flex flex-col justify-between items-center w-72 bg-white fixed top-0 left-0 z-40 ">
         {{-- logo website --}}
         <div class="flex">
             <img src="{{ asset('logos/film.svg') }}" alt="logo-swirl" class="mr-2">
@@ -103,7 +103,8 @@
         </div>
     </aside>
 
-    <main class="mx-6 border w-full">
+    <main class="ml-72 px-6">
+        {{-- navbar --}}
         <nav class="w-full grid grid-cols-5 items-center pt-6 gap-6">
 
             {{-- input search --}}
@@ -111,7 +112,7 @@
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div class="absolute inset-y-0 z-40 left-0 flex items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" class="w-5 h-5 text-[#151515]/30" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -119,8 +120,8 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search"
-                        class="block w-full p-2 pl-10 text-sm text-[#151515] rounded-full bg-white border-0 placeholder-[#151515]/30 placeholder:font-medium"
-                        placeholder="Search Mockups, Logos..." required>
+                        class="block w-full p-2 pl-10 text-sm text-[#151515] rounded-full bg-transparent backdrop-blur-xl border-0 placeholder-[#151515]/30 placeholder:font-medium focus:ring-[#BAF3D8] focus:border-[#BAF3D8]"
+                        placeholder="Search Movies" required>
                 </div>
             </form>
 
@@ -129,7 +130,7 @@
                 {{-- dropdown lang settings --}}
                 <div class="flex items-center">
                     <button data-dropdown-toggle="changeLanguage"
-                        class="flex items-center p-4 py-2 bg-[#BAF3D8] rounded-full text-sm font-medium font-poppins">
+                        class="flex items-center mr-4 p-4 py-2 bg-[#BAF3D8] rounded-full text-sm font-medium font-poppins">
                         <svg class="w-5 h-5 mr-2 rounded-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900">
                             <path fill="#b22234" d="M0 0h7410v3900H0z" />
@@ -255,7 +256,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 {{-- Button User Profile --}}
                 <div class="flex">
@@ -311,6 +311,68 @@
                 </div>
             </div>
         </nav>
+
+        {{-- Main Content --}}
+        <div class="grid grid-cols-5 gap-6 py-6">
+            {{-- Section 1 --}}
+            <section class="col-span-3 w-full">
+                {{-- carousel popular movies --}}
+                <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                    <!-- Carousel wrapper -->
+                    <div class="relative h-56 overflow-hidden rounded-[2rem] md:h-96">
+                        @foreach ($data as $movie)
+                            <!-- Item 1 -->
+                            <div class="hidden duration-700 ease-in" data-carousel-item>
+                                <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}"
+                                    class="absolute block w-full h-96 object-cover blur-lg brightness-75"
+                                    alt="{{ $movie['title'] }}">
+                                <div
+                                    class="absolute top-0 w-full h-96 flex justify-between z-50 text-white p-9 duration-700 ease-in-out rounded-[2rem]">
+                                    <div class="flex flex-col justify-between">
+                                        <div class="flex flex-col gap-3 mr-9">
+                                            <h1 class="text-4xl text-white font-poppins font-bold">
+                                                {{ $movie['title'] }}</h1>
+                                            <p class="text-sm font-poppins font-medium text-gray-300 line-clamp-5">
+                                                {{ $movie['overview'] }}</p>
+                                        </div>
+                                        <button class="inline-flex px-4 py-2 bg-[#BAF3D8] rounded-full w-fit items-center">
+                                            <p class="text-base font-poppins font-medium text-black mr-2">Watch the trailer</p>
+                                            <img src="{{asset('logos/eye.svg')}}" alt="">
+                                        </button>
+                                    </div>
+                                    <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}"
+                                        alt="" class="h-full w-56 object-cover rounded-3xl">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Top Rated Movies --}}
+                <div class="mt-9">
+                    <div class="w-full inline-flex justify-between items-end mb-6">
+                        <h1 class="text-xl font-poppins font-semibold text-[#151515]">Top Rated Movies</h1>
+                        <button class="inline-flex items-center gap-2 group">
+                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">See more</h1>
+                            <img src="{{asset('logos/arrow-right.svg')}}" alt="" class="opacity-50 group-hover:opacity-100">
+                        </button>
+                    </div>
+                    <div class="flex flex-row justify-between w-full ">
+                        @foreach (array_slice($filmsWithGenres, 0, 4) as $genre)
+                            
+                        <div class="w-fit rounded-xl bg-white shadow-lg shadow-[#BAF3D8]">
+                            <img src="https://image.tmdb.org/t/p/w500{{ $genre['poster_path'] }}" alt="" class="h-44 w-40 object-cover rounded-xl">
+                            <div class="w-40 p-4 font-poppins">
+                                <h1 class="text-sm font-semibold text-[#151515] truncate">{{ $genre['title'] }}</title>
+                                <p class="text-[10px] font-normal text-[#151515]/50">{{implode(', ', $genre['genre_names'])}}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+            <div class="col-span-2 w-full"></div>
+        </div>
     </main>
     {{-- <div class="grid grid-cols-2 gap-6 mt-10">
         @foreach ($data as $movie)
