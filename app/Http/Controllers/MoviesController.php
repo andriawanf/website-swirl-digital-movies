@@ -13,7 +13,7 @@ class MoviesController extends Controller
     public function index()
     {
         // list Movies
-        $url = 'https://api.themoviedb.org/3/discover/movie?api_key=46ed110d0011550ed72c3dcf77411b4e';
+        $url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=46ed110d0011550ed72c3dcf77411b4e';
         $response = file_get_contents($url);
         $data = json_decode($response, true);
         $dataMovies = $data['results'];
@@ -23,6 +23,13 @@ class MoviesController extends Controller
         $getTopRatedMovies = file_get_contents($urlTopRatedMovies);
         $dataTopRatedMovies = json_decode($getTopRatedMovies, true);
         $topRatedMovies = $dataTopRatedMovies['results'];
+
+        // Popular Movies
+        $urlPopulatMovies = 'https://api.themoviedb.org/3/movie/popular?api_key=46ed110d0011550ed72c3dcf77411b4e';
+        $getPopularMovies = file_get_contents($urlPopulatMovies);
+        $dataPopularMovies = json_decode($getPopularMovies, true);
+        $popularMovies = $dataPopularMovies['results'];
+
         // Genre Movies
         $urlGenreMovies = 'https://api.themoviedb.org/3/genre/movie/list?api_key=46ed110d0011550ed72c3dcf77411b4e';
         $getContent = file_get_contents($urlGenreMovies);
@@ -49,7 +56,7 @@ class MoviesController extends Controller
 
         // $film = $data['results'][0];
 
-        return view('landingPage', ['data' => $data['results']], ['filmsWithGenres' => $filmsWithGenres]);
+        return view('landingPage', compact('dataMovies', 'popularMovies', 'filmsWithGenres', 'genres'));
     }
 
     /**

@@ -48,7 +48,7 @@
         </div>
 
         {{-- menu list --}}
-        <ul class="flex flex-col items-start w-full font-poppins gap-4">
+        <ul class="flex flex-col items-start w-full font-poppins gap-3">
             <li class="bg-[#2AD587]/20 w-full pl-4 pr-5 py-3 rounded-2xl flex items-center">
                 <img src="{{ asset('logos/home.svg') }}" alt="home-icon" class="mr-2">
                 <a href="#" class="font-medium text-base text-[#151515]">Browse</a>
@@ -320,7 +320,7 @@
                 <div id="default-carousel" class="relative w-full" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden rounded-[2rem] md:h-96">
-                        @foreach ($data as $movie)
+                        @foreach ($dataMovies as $movie)
                             <!-- Item 1 -->
                             <div class="hidden duration-700 ease-in" data-carousel-item>
                                 <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}"
@@ -348,6 +348,34 @@
                     </div>
                 </div>
 
+                {{-- Popular Movies --}}
+                <div class="mt-9">
+                    <div class="w-full inline-flex justify-between items-end mb-6">
+                        <h1 class="text-xl font-poppins font-semibold text-[#151515]">Popular Movies</h1>
+                        <button class="inline-flex items-center gap-2 group">
+                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">See more</h1>
+                            <img src="{{asset('logos/arrow-right.svg')}}" alt="" class="opacity-50 group-hover:opacity-100">
+                        </button>
+                    </div>
+                    <div class="flex flex-row justify-between w-full ">
+                        @foreach (array_slice($popularMovies, 0, 4) as $popularMovie)
+                            
+                        <div class="w-fit rounded-xl bg-white shadow-lg shadow-[#BAF3D8]">
+                            <img src="https://image.tmdb.org/t/p/w500{{ $popularMovie['poster_path'] }}" alt="" class="h-44 w-40 object-cover rounded-xl">
+                            <div class="w-40 p-4 font-poppins">
+                                <h1 class="text-sm font-semibold text-[#151515] truncate">{{ $popularMovie['title'] }}</title>
+                                <p class="text-[10px] font-normal text-[#151515]/50"><span>Popularity: </span>{{$popularMovie['popularity']}}</p>
+                                <div class="flex mt-2">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.9344 11.6304L17.8204 14.6226L18.5554 18.8435C18.6754 19.5325 18.3974 20.2195 17.8294 20.6355C17.2504 21.0585 16.4944 21.1166 15.8564 20.7876L12.0004 18.7905L8.14445 20.7876C7.87045 20.9296 7.57345 20.9995 7.27845 20.9995C6.88845 20.9995 6.50142 20.8765 6.17142 20.6355C5.60442 20.2195 5.32544 19.5325 5.44544 18.8435L6.18043 14.6226L3.06644 11.6304C2.55644 11.1404 2.37342 10.4195 2.58942 9.74951C2.80742 9.07151 3.38542 8.58857 4.09742 8.48657L8.40644 7.86938L10.3324 4.02441C10.6484 3.39241 11.2884 3.00049 12.0004 3.00049C12.7124 3.00049 13.3524 3.39341 13.6684 4.02441L15.5944 7.86938L19.9034 8.48657C20.6144 8.58857 21.1924 9.07151 21.4104 9.74951C21.6264 10.4195 21.4444 11.1404 20.9344 11.6304Z" fill="#FFF400"/>
+                                        </svg>
+                                    <p class="text-sm font-poppins font-medium text-[#C5BD00] ml-1">{{$popularMovie['vote_average']}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
                 {{-- Top Rated Movies --}}
                 <div class="mt-9">
                     <div class="w-full inline-flex justify-between items-end mb-6">
