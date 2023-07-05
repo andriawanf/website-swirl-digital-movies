@@ -30,6 +30,12 @@ class MoviesController extends Controller
         $dataPopularMovies = json_decode($getPopularMovies, true);
         $popularMovies = $dataPopularMovies['results'];
 
+        // Upcoming Movies
+        $urlUpcomingMovies = 'https://api.themoviedb.org/3/movie/upcoming?api_key=46ed110d0011550ed72c3dcf77411b4e';
+        $getUpcomingMovies = file_get_contents($urlUpcomingMovies);
+        $dataUpcomingMovies = json_decode($getUpcomingMovies, true);
+        $upcomingMovies = $dataUpcomingMovies['results'];
+
         // Genre Movies
         $urlGenreMovies = 'https://api.themoviedb.org/3/genre/movie/list?api_key=46ed110d0011550ed72c3dcf77411b4e';
         $getContent = file_get_contents($urlGenreMovies);
@@ -56,7 +62,7 @@ class MoviesController extends Controller
 
         // $film = $data['results'][0];
 
-        return view('landingPage', compact('dataMovies', 'popularMovies', 'filmsWithGenres', 'genres'));
+        return view('landingPage', compact('dataMovies', 'popularMovies', 'filmsWithGenres', 'genres', 'upcomingMovies'));
     }
 
     /**

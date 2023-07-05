@@ -33,7 +33,7 @@
                 </div>
                 <div class="font-poppins ml-3">
                     <p class="text-[10px] font-medium text-black/50">Your Subscription</p>
-                    <h1 class="text-base font-bold text-[#151515]">Free Trial</h1>
+                    <h1 class="text-base font-bold text-[#f1f1f1]">Free Trial</h1>
                 </div>
             </div>
             <div class="flex justify-between items-center">
@@ -335,9 +335,11 @@
                                             <p class="text-sm font-poppins font-medium text-gray-300 line-clamp-5">
                                                 {{ $movie['overview'] }}</p>
                                         </div>
-                                        <button class="inline-flex px-4 py-2 bg-[#BAF3D8] rounded-full w-fit items-center">
-                                            <p class="text-base font-poppins font-medium text-black mr-2">Watch the trailer</p>
-                                            <img src="{{asset('logos/eye.svg')}}" alt="">
+                                        <button
+                                            class="inline-flex px-4 py-2 bg-[#BAF3D8] rounded-full w-fit items-center">
+                                            <p class="text-base font-poppins font-medium text-black mr-2">Watch the
+                                                trailer</p>
+                                            <img src="{{ asset('logos/eye.svg') }}" alt="">
                                         </button>
                                     </div>
                                     <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}"
@@ -353,26 +355,34 @@
                     <div class="w-full inline-flex justify-between items-end mb-6">
                         <h1 class="text-xl font-poppins font-semibold text-[#151515]">Popular Movies</h1>
                         <button class="inline-flex items-center gap-2 group">
-                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">See more</h1>
-                            <img src="{{asset('logos/arrow-right.svg')}}" alt="" class="opacity-50 group-hover:opacity-100">
+                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">
+                                See more</h1>
+                            <img src="{{ asset('logos/arrow-right.svg') }}" alt=""
+                                class="opacity-50 group-hover:opacity-100">
                         </button>
                     </div>
                     <div class="flex flex-row justify-between w-full ">
                         @foreach (array_slice($popularMovies, 0, 4) as $popularMovie)
-                            
-                        <div class="w-fit rounded-xl bg-white shadow-lg shadow-[#BAF3D8]">
-                            <img src="https://image.tmdb.org/t/p/w500{{ $popularMovie['poster_path'] }}" alt="" class="h-44 w-40 object-cover rounded-xl">
-                            <div class="w-40 p-4 font-poppins">
-                                <h1 class="text-sm font-semibold text-[#151515] truncate">{{ $popularMovie['title'] }}</title>
-                                <p class="text-[10px] font-normal text-[#151515]/50"><span>Popularity: </span>{{$popularMovie['popularity']}}</p>
-                                <div class="flex mt-2">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.9344 11.6304L17.8204 14.6226L18.5554 18.8435C18.6754 19.5325 18.3974 20.2195 17.8294 20.6355C17.2504 21.0585 16.4944 21.1166 15.8564 20.7876L12.0004 18.7905L8.14445 20.7876C7.87045 20.9296 7.57345 20.9995 7.27845 20.9995C6.88845 20.9995 6.50142 20.8765 6.17142 20.6355C5.60442 20.2195 5.32544 19.5325 5.44544 18.8435L6.18043 14.6226L3.06644 11.6304C2.55644 11.1404 2.37342 10.4195 2.58942 9.74951C2.80742 9.07151 3.38542 8.58857 4.09742 8.48657L8.40644 7.86938L10.3324 4.02441C10.6484 3.39241 11.2884 3.00049 12.0004 3.00049C12.7124 3.00049 13.3524 3.39341 13.6684 4.02441L15.5944 7.86938L19.9034 8.48657C20.6144 8.58857 21.1924 9.07151 21.4104 9.74951C21.6264 10.4195 21.4444 11.1404 20.9344 11.6304Z" fill="#FFF400"/>
-                                        </svg>
-                                    <p class="text-sm font-poppins font-medium text-[#C5BD00] ml-1">{{$popularMovie['vote_average']}}</p>
+                            <div class="w-fit rounded-3xl bg-white shadow-lg shadow-[#BAF3D8]">
+                                <img src="https://image.tmdb.org/t/p/w500{{ $popularMovie['poster_path'] }}"
+                                    alt="" class="h-44 w-40 object-cover rounded-3xl">
+                                <div class="w-40 p-4 font-poppins">
+                                    <h1 class="text-sm font-semibold text-[#151515] truncate">
+                                        {{ $popularMovie['title'] }}</title>
+                                        <p class="text-[10px] font-normal text-[#151515]/50"><span>Popularity:
+                                            </span>{{ $popularMovie['popularity'] }}</p>
+                                        <div class="flex mt-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M20.9344 11.6304L17.8204 14.6226L18.5554 18.8435C18.6754 19.5325 18.3974 20.2195 17.8294 20.6355C17.2504 21.0585 16.4944 21.1166 15.8564 20.7876L12.0004 18.7905L8.14445 20.7876C7.87045 20.9296 7.57345 20.9995 7.27845 20.9995C6.88845 20.9995 6.50142 20.8765 6.17142 20.6355C5.60442 20.2195 5.32544 19.5325 5.44544 18.8435L6.18043 14.6226L3.06644 11.6304C2.55644 11.1404 2.37342 10.4195 2.58942 9.74951C2.80742 9.07151 3.38542 8.58857 4.09742 8.48657L8.40644 7.86938L10.3324 4.02441C10.6484 3.39241 11.2884 3.00049 12.0004 3.00049C12.7124 3.00049 13.3524 3.39341 13.6684 4.02441L15.5944 7.86938L19.9034 8.48657C20.6144 8.58857 21.1924 9.07151 21.4104 9.74951C21.6264 10.4195 21.4444 11.1404 20.9344 11.6304Z"
+                                                    fill="#FFF400" />
+                                            </svg>
+                                            <p class="text-sm font-poppins font-medium text-[#C5BD00] ml-1">
+                                                {{ $popularMovie['vote_average'] }}</p>
+                                        </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -381,54 +391,85 @@
                     <div class="w-full inline-flex justify-between items-end mb-6">
                         <h1 class="text-xl font-poppins font-semibold text-[#151515]">Top Rated Movies</h1>
                         <button class="inline-flex items-center gap-2 group">
-                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">See more</h1>
-                            <img src="{{asset('logos/arrow-right.svg')}}" alt="" class="opacity-50 group-hover:opacity-100">
+                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">
+                                See more</h1>
+                            <img src="{{ asset('logos/arrow-right.svg') }}" alt=""
+                                class="opacity-50 group-hover:opacity-100">
                         </button>
                     </div>
                     <div class="flex flex-row justify-between w-full ">
                         @foreach (array_slice($filmsWithGenres, 0, 4) as $genre)
-                            
-                        <div class="w-fit rounded-xl bg-white shadow-lg shadow-[#BAF3D8]">
-                            <img src="https://image.tmdb.org/t/p/w500{{ $genre['poster_path'] }}" alt="" class="h-44 w-40 object-cover rounded-xl">
-                            <div class="w-40 p-4 font-poppins">
-                                <h1 class="text-sm font-semibold text-[#151515] truncate">{{ $genre['title'] }}</title>
-                                <p class="text-[10px] font-normal text-[#151515]/50">{{implode(', ', $genre['genre_names'])}}</p>
-                                <div class="flex mt-2">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20.9344 11.6304L17.8204 14.6226L18.5554 18.8435C18.6754 19.5325 18.3974 20.2195 17.8294 20.6355C17.2504 21.0585 16.4944 21.1166 15.8564 20.7876L12.0004 18.7905L8.14445 20.7876C7.87045 20.9296 7.57345 20.9995 7.27845 20.9995C6.88845 20.9995 6.50142 20.8765 6.17142 20.6355C5.60442 20.2195 5.32544 19.5325 5.44544 18.8435L6.18043 14.6226L3.06644 11.6304C2.55644 11.1404 2.37342 10.4195 2.58942 9.74951C2.80742 9.07151 3.38542 8.58857 4.09742 8.48657L8.40644 7.86938L10.3324 4.02441C10.6484 3.39241 11.2884 3.00049 12.0004 3.00049C12.7124 3.00049 13.3524 3.39341 13.6684 4.02441L15.5944 7.86938L19.9034 8.48657C20.6144 8.58857 21.1924 9.07151 21.4104 9.74951C21.6264 10.4195 21.4444 11.1404 20.9344 11.6304Z" fill="#FFF400"/>
-                                        </svg>
-                                    <p class="text-sm font-poppins font-medium text-[#C5BD00] ml-1">{{$genre['vote_average']}}</p>
+                            <div class="w-fit rounded-3xl bg-white shadow-lg shadow-[#BAF3D8]">
+                                <img src="https://image.tmdb.org/t/p/w500{{ $genre['poster_path'] }}" alt=""
+                                    class="h-44 w-40 object-cover rounded-3xl">
+                                <div class="w-40 p-4 font-poppins">
+                                    <h1 class="text-sm font-semibold text-[#151515] truncate">{{ $genre['title'] }}
+                                        </title>
+                                        <p class="text-[10px] font-normal text-[#151515]/50">
+                                            {{ implode(', ', $genre['genre_names']) }}</p>
+                                        <div class="flex mt-2">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M20.9344 11.6304L17.8204 14.6226L18.5554 18.8435C18.6754 19.5325 18.3974 20.2195 17.8294 20.6355C17.2504 21.0585 16.4944 21.1166 15.8564 20.7876L12.0004 18.7905L8.14445 20.7876C7.87045 20.9296 7.57345 20.9995 7.27845 20.9995C6.88845 20.9995 6.50142 20.8765 6.17142 20.6355C5.60442 20.2195 5.32544 19.5325 5.44544 18.8435L6.18043 14.6226L3.06644 11.6304C2.55644 11.1404 2.37342 10.4195 2.58942 9.74951C2.80742 9.07151 3.38542 8.58857 4.09742 8.48657L8.40644 7.86938L10.3324 4.02441C10.6484 3.39241 11.2884 3.00049 12.0004 3.00049C12.7124 3.00049 13.3524 3.39341 13.6684 4.02441L15.5944 7.86938L19.9034 8.48657C20.6144 8.58857 21.1924 9.07151 21.4104 9.74951C21.6264 10.4195 21.4444 11.1404 20.9344 11.6304Z"
+                                                    fill="#FFF400" />
+                                            </svg>
+                                            <p class="text-sm font-poppins font-medium text-[#C5BD00] ml-1">
+                                                {{ $genre['vote_average'] }}</p>
+                                        </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
             </section>
-            <div class="col-span-2 w-full"></div>
-        </div>
-    </main>
-    {{-- <div class="grid grid-cols-2 gap-6 mt-10">
-        @foreach ($data as $movie)
-            <div class="bg-blue-100 rounded-[2rem] shadow-lg shadow-blue-200 overflow-hidden md:w-full">
-                <div class="md:flex">
-                    <div class="md:shrink-0">
-                        <img class="h-48 w-full object-cover md:h-full md:w-40" src="https://image.tmdb.org/t/p/w500{{$movie['poster_path']}}"
-                            alt="{{$movie['title']}}">
+            <div class="col-span-2 w-full">
+                {{-- carousel upcoming movies --}}
+                <div id="controls-carousel" class="relative w-full rounded-[2rem]" data-carousel="static">
+                    <h1 class="text-xl font-poppins font-semibold text-[#151515] mb-4">Upcoming Movies</h1>
+                    <!-- Carousel wrapper -->
+                    <div class="relative overflow-hidden rounded-[2rem] md:h-96">
+                        @foreach ($upcomingMovies as $upcoming)
+                        <!-- Item 1 -->
+                        <div class="hidden duration-700 ease-in-out rounded-[2rem]" data-carousel-item>
+                            <img src="https://image.tmdb.org/t/p/w500{{ $upcoming['poster_path'] }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-[2rem] object-cover brightness-75"
+                                alt="...">
+                            <h1 class="text-4xl text-white font-poppins font-semibold absolute z-50 w-full text-center top-6">{{$upcoming['title']}}</h1>
+                        </div>
+                        @endforeach
                     </div>
-                    <div class="p-8">
-                        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                            {{ $movie['vote_average'] }}</div>
-                        <a href="#"
-                            class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">{{ $movie['title'] }}</a>
-                        <p class="mt-2 text-slate-500 line-clamp-3">{{ $movie['overview'] }}</p>
-                        <div class="mt-2 tracking-wide text-sm text-black font-semibold">
-                           <span>Popularity:</span> {{ $movie['popularity'] }}</div>
-                    </div>
+                    <!-- Slider controls -->
+                    <button type="button"
+                        class="absolute top-6 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-prev>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M5 1 1 5l4 4" />
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button"
+                        class="absolute top-6 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-next>
+                        <span
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
                 </div>
             </div>
-        @endforeach
-    </div> --}}
+        </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.6/flowbite.min.js"></script>
 </body>
 
