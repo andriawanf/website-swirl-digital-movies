@@ -42,6 +42,12 @@ class MoviesController extends Controller
         $dataGenreMovies = json_decode($getContent, true);
         $genres = $dataGenreMovies['genres'];
 
+        // Actors
+        $urlActors = 'https://api.themoviedb.org/3/trending/person/day?api_key=46ed110d0011550ed72c3dcf77411b4e&language=en-US';
+        $getActors = file_get_contents($urlActors);
+        $dataActors = json_decode($getActors, true);
+        $actors = $dataActors['results'];
+
         $filmsWithGenres = [];
 
         foreach ($topRatedMovies as $film) {
@@ -62,7 +68,7 @@ class MoviesController extends Controller
 
         // $film = $data['results'][0];
 
-        return view('landingPage', compact('dataMovies', 'popularMovies', 'filmsWithGenres', 'genres', 'upcomingMovies'));
+        return view('landingPage', compact('dataMovies', 'popularMovies', 'filmsWithGenres', 'genres', 'upcomingMovies', 'actors'));
     }
 
     /**
