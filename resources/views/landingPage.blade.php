@@ -18,9 +18,9 @@
 </head>
 
 <body class=" bg-[#F5F5F5] ">
-    <aside class="p-6 h-screen flex flex-col justify-between items-center w-72 bg-white fixed top-0 left-0 z-40 ">
+    <aside class="p-6 h-screen flex flex-col justify-between items-center w-64 bg-white fixed top-0 left-0 z-40 ">
         {{-- logo website --}}
-        <div class="flex">
+        <div class="flex ">
             <img src="{{ asset('logos/film.svg') }}" alt="logo-swirl" class="mr-2">
             <h1 class="text-2xl font-poppins font-semibold text-[#151515]">SwirlMovies</h1>
         </div>
@@ -103,7 +103,7 @@
         </div>
     </aside>
 
-    <main class="ml-72 px-6">
+    <main class="ml-64 px-6">
         {{-- navbar --}}
         <nav class="w-full grid grid-cols-5 items-center pt-6 gap-6">
 
@@ -384,7 +384,7 @@
                         @endforeach
                     </div>
                 </div>
-                
+
                 {{-- Top Rated Movies --}}
                 <div class="mt-9">
                     <div class="w-full inline-flex justify-between items-end mb-6">
@@ -421,7 +421,7 @@
                         @endforeach
                     </div>
                 </div>
-                
+
                 {{-- Top Rated Movies --}}
                 <div class="mt-9">
                     <div class="w-full inline-flex justify-between items-end mb-6">
@@ -493,38 +493,45 @@
                 <h1 class="text-lg font-poppins font-semibold text-[#151515] mb-4">Genres</h1>
                 <ul class="flex flex-wrap w-full gap-2 mb-20">
                     @foreach ($genres as $genre)
-                    <li>
-                        <input type="radio" id="hosting-small" name="hosting" value="hosting-small"
+                        <li>
+                            <input type="radio" id="hosting-small" name="hosting" value="hosting-small"
                                 class="hidden peer">
-                                <label for="hosting-small"
+                            <label for="hosting-small"
                                 class="inline-flex items-center justify-between w-full px-4 py-2 text-[#151515] bg-white border border-gray-400 rounded-full cursor-pointer peer-checked:border-[#BAF3D8] peer-checked:text-[#151515] peer-checked:bg-[#2AD587] hover:text-[#2AD587] hover:bg-gray-100">
                                 <div class="block">
-                                    <div class="w-full text-xs font-poppins font-normal">{{$genre['name']}}</div>
+                                    <div class="w-full text-xs font-poppins font-normal">{{ $genre['name'] }}</div>
                                 </div>
                                 <svg class="w-4 h-4 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" viewBox="0 0 24 24" fill="#151515">
-                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                            </svg>
-                        </label>
-                    </li>
+                                    width="16" height="16" viewBox="0 0 24 24" fill="#151515">
+                                    <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                </svg>
+                            </label>
+                        </li>
                     @endforeach
                 </ul>
-                
+
                 {{-- Actors List --}}
                 <h1 class="text-lg font-poppins font-semibold text-[#151515] mb-4">Actors</h1>
                 <div class="flex flex-wrap w-full gap-2 mb-6">
                     @foreach (array_slice($actors, 0, 5) as $actor)
-                    <div class="w-36 relative">
-                        <img src="https://image.tmdb.org/t/p/w500{{ $actor['profile_path'] }}" alt="" class="w-36 h-36 object-cover rounded-3xl">
-                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#151515] via-transparent to-transparent rounded-3xl">
-                            <h1 class="text-sm font-poppins font-medium text-center text-white bottom-3 left-0 right-0 absolute">{{$actor['name']}}</h1>
+                        <div class="w-36 relative">
+                            <img src="https://image.tmdb.org/t/p/w500{{ $actor['profile_path'] }}" alt=""
+                                class="w-36 h-36 object-cover rounded-3xl">
+                            <div
+                                class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#151515] via-transparent to-transparent rounded-3xl">
+                                <h1
+                                    class="text-sm font-poppins font-medium text-center text-white bottom-3 left-0 right-0 absolute">
+                                    {{ $actor['name'] }}</h1>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
-                    <div class="w-36 h-36 rounded-3xl relative border-dashed border-2 border-[#151515]/20 flex justify-center items-center group hover:border-[#151515]">
+                    <div
+                        class="w-36 h-36 rounded-3xl relative border-dashed border-2 border-[#151515]/20 flex justify-center items-center group hover:border-[#151515]">
                         <button class="inline-flex gap-2">
-                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">Other actors</h1>
-                            <img src="{{asset('logos/arrow-right.svg')}}" alt="" class="opacity-50 group-hover:opacity-100">
+                            <h1 class="text-xs font-poppins font-medium text-[#151515]/50 group-hover:text-[#151515]">
+                                Other actors</h1>
+                            <img src="{{ asset('logos/arrow-right.svg') }}" alt=""
+                                class="opacity-50 group-hover:opacity-100">
                         </button>
                     </div>
                 </div>
